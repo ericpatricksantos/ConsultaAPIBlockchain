@@ -10,8 +10,8 @@ import (
 
 func main() {
 
-	var hash string = "b6f6991d03df0e2e04dafffcd6bc418aac66049e2cd74b80f14ac86db1e3f0da"
+	var hash string = "0000000000000bae09a7a393a8acded75aa67e46cb81f7acaa5ad94f9eacd103"
 
-	fmt.Printf("API Response as struct %+v\n", Function.GetTransaction(hash))
+	fmt.Printf("API Response as struct %+v\n", Function.GetBloco(hash))
 
 }
