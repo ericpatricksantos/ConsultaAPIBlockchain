@@ -37,6 +37,7 @@ func GetTransaction(hashTransacao string) Model.Transaction {
 }
 
 func GetBloco(hastBlock string) Model.Block {
+
 	fmt.Println("Calling API...")
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", "https://blockchain.info/rawblock/"+hastBlock, nil)

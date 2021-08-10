@@ -28,6 +28,7 @@ func Close(client *mongo.Client, ctx context.Context,
 			panic(err)
 		}
 	}()
+
 }
 
 // This is a user defined method that returns mongo.Client,
