@@ -1,30 +1,22 @@
 package Model
 
-type Database struct {
-	Host     string
-	Port     int
-	User     string
-	Password string
-	Name     string
-	SSLmode  string
-}
-
 type Block struct {
-	Hash          string        `json:"hash"`
-	Ver           int           `json:"ver"`
-	Prev_block    string        `json:"prev_block"`
-	Mrkl_root     string        `json:"mrkl_root"`
-	Time          int           `json:"time"`
-	Bits          int           `json:"bits"`
-	Next_Block    []string      `json:"next_block"`
-	Nonce         int           `json:"nonce"`
-	N_tx          int           `json:"n_tx"`
-	Block_index   int           `json:"block_index"`
-	Main_chain    bool          `json:"main_chain"`
-	Height        int           `json:"height"`
-	Received_time int           `json:"received_time"`
-	Relayed_by    string        `json:"relayed_by"`
-	Tx            []Transaction `json:"tx"`
+	Hash        string        `json:"hash"`
+	Ver         int           `json:"ver"`
+	Prev_block  string        `json:"prev_block"`
+	Mrkl_root   string        `json:"mrkl_root"`
+	Time        int           `json:"time"`
+	Bits        int           `json:"bits"`
+	Next_Block  []string      `json:"next_block"`
+	Fee         int           `json:"fee"`
+	Nonce       int           `json:"nonce"`
+	N_tx        int           `json:"n_tx"`
+	Size        int           `json:"size"`
+	Block_index int           `json:"block_index"`
+	Main_chain  bool          `json:"main_chain"`
+	Height      int           `json:"height"`
+	Weight      int           `json:"weight"`
+	Tx          []Transaction `json:"tx"`
 }
 
 type Transaction struct {
@@ -32,29 +24,48 @@ type Transaction struct {
 	Ver          int           `json:"ver"`
 	Vin_sz       int           `json:"vin_sz"`
 	Vout_sz      int           `json:"vout_sz"`
-	Lock_time    string        `json:"lock_time"`
-	Size         string        `json:"size"`
+	Size         int           `json:"size"`
+	Weight       int           `json:"weight"`
+	Fee          int           `json:"fee"`
 	Relayed_by   string        `json:"relayed_by"`
+	Lock_time    int           `json:"lock_time"`
+	Tx_index     int64         `json:"tx_index"`
 	Block_height int           `json:"block_height"`
-	Tx_index     string        `json:"tx_index"`
 	Inputs       []ListaInputs `json:"inputs"`
 	Out          []ListaOut    `json:"out"`
 }
 
 type ListaInputs struct {
-	Prev_out PrevOut `json:"prev_out"`
+	Sequence int64   `json:"sequence"`
+	Witness  string  `json:"witness"`
 	Script   string  `json:"script"`
+	Index    int     `json:"index"`
+	Prev_out PrevOut `json:"prev_out"`
 }
 
 type ListaOut struct {
-	Value  string `json:"value"`
-	Hash   string `json:"hash"`
-	Script string `json:"script"`
+	Type               int                 `json:"type"`
+	Spent              bool                `json:"spent"`
+	Value              int64               `json:"value"`
+	Spending_outpoints []Spendingoutpoints `json:"spending_outpoints"`
+	N                  int                 `json:"n"`
+	Tx_index           int64               `json:"tx_index"`
+	Script             string              `json:"script"`
+	Addr               string              `json:"addr"`
 }
 
 type PrevOut struct {
-	Hash     string `json:"hash"`
-	Value    string `json:"value"`
-	Tx_index string `json:"tx_index"`
-	N        int    `json:"n"`
+	Spent              bool                `json:"spent"`
+	Script             string              `json:"script"`
+	Spending_outpoints []Spendingoutpoints `json:"spending_outpoints"`
+	Tx_index           int64               `json:"tx_index"`
+	Value              int64               `json:"value"`
+	Addr               string              `json:"addr"`
+	N                  int                 `json:"n"`
+	Type               int                 `json:"type"`
+}
+
+type Spendingoutpoints struct {
+	Tx_index int64 `json:"tx_index"`
+	N        int   `json:"n"`
 }

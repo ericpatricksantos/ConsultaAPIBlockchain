@@ -1,4 +1,4 @@
-package Function
+package API
 
 import (
 	"encoding/json"
@@ -6,13 +6,14 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"main.go/Function/Config"
 	Model "main.go/Models"
 )
 
 func GetTransaction(hashTransacao string) Model.Transaction {
 	fmt.Println("Calling API...")
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://blockchain.info/rawtx/"+hashTransacao, nil)
+	req, err := http.NewRequest("GET", Config.GetConfig().UrlAPITransaction+hashTransacao, nil)
 	if err != nil {
 		fmt.Print(err.Error())
 	}
@@ -40,7 +41,7 @@ func GetBloco(hastBlock string) Model.Block {
 
 	fmt.Println("Calling API...")
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://blockchain.info/rawblock/"+hastBlock, nil)
+	req, err := http.NewRequest("GET", Config.GetConfig().UrlAPIBlock+hastBlock, nil)
 	if err != nil {
 		fmt.Print(err.Error())
 	}
