@@ -3,7 +3,7 @@
 Consulta a API da Blockchain
   * Consulta as transações
   * Consulta os blocos
-  * Salvar no Banco de Dados MOngoDB
+  * Salva no Banco de Dados MOngoDB
   
   
 No arquivo config.json:
